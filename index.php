@@ -1,3 +1,9 @@
+<?php
+
+include('function/function.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Buku <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Buku <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Anggota</a>
+                        <a class="nav-link" href="?page=anggota">Anggota</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pinjam</a>
+                        <a class="nav-link" href="?page=pinjam">Pinjam</a>
                     </li>
                 </ul>
             </div>
@@ -38,6 +44,10 @@
             switch ($_GET['page']) {
                 case 'anggota':
                     require_once 'template/anggota.php';
+                    break;
+
+                case 'pinjam':
+                    require_once 'template/pinjam.php';
                     break;
 
                 default:
