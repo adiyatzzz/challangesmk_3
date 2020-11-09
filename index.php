@@ -50,6 +50,15 @@ include('function/function.php');
                 case 'pinjam':
                     require_once 'template/pinjam.php';
                     break;
+                /*
+                sebelum menambah halaman harap tambahkan case baru
+                case dan file haru memiliki nama yang sama
+                contoh : 
+                case 'page':
+                    require_once 'template/page.php';
+                    break;
+                
+                */
 
                 case 'tambah_pinjam':
                     require_once 'template/tambah_pinjam.php';
