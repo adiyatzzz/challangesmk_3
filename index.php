@@ -41,7 +41,8 @@ include('function/function.php');
     <div class="content">
         <?php
         if (isset($_GET["page"])) {
-            switch ($_GET['page']) {
+            $page = $_GET['page'];
+            switch ($page) {
                 case 'anggota':
                     require_once 'template/anggota.php';
                     break;
@@ -50,14 +51,26 @@ include('function/function.php');
                     require_once 'template/pinjam.php';
                     break;
 
+                case 'tambah_pinjam':
+                    require_once 'template/tambah_pinjam.php';
+                    break;
+
                 default:
-                    require_once 'template/buku.php';
+                    require_once 'template/notfound.php';
                     break;
             }
         } else {
-            require_once 'template/buku.php';
-        }
         ?>
+            <div class="container">
+                <div class="row mt-3">
+                    <h3>Buku</h3>
+                </div>
+
+                <div class="row">
+
+                </div>
+            </div>
+        <?php } ?>
     </div>
 
     <script src="assets/js/jquery-3.4.1.min.js"></script>

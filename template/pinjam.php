@@ -1,3 +1,25 @@
+<?php
+
+if (isset($_GET['act']) == 'hapus_pinjam') {
+    $id = $_GET['id'];
+    if (hapus_pinjam($id) > 0) {
+        echo "
+            <script>
+            alert('Data berhasil di hapus')
+            window.location.href = '?page=pinjam';
+            </script>
+        ";
+    } else {
+        echo "
+            <script>
+            alert('Data gagal di hapus')
+            window.location.href = '?page=pinjam';
+            </script>
+        ";
+    }
+}
+
+?>
 <div class="container">
     <div class="row mt-3">
         <h3>Pinjam Buku</h3>
@@ -41,8 +63,9 @@
                         <td><?= $d['tarif_denda'] ?></td>
                         <td><?= $d['jns_denda'] ?></td>
                         <td>
-                            <a href="?page=editpinjam&id=<?= $d['id'] ?>" class="btn btn-success">Edit</a>
-                            <a href="" class="btn btn-danger">Hapus</a>
+                            <a href="" class="btn btn-warning">Denda</a>
+                            <a href="?page=editpinjam&id=<?= $d['kode_pinjam'] ?>" class="btn btn-success">Edit</a>
+                            <a href="?page=pinjam&act=hapus_pinjam&id=<?= $d['kode_pinjam'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
