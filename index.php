@@ -46,6 +46,14 @@ include('function/function.php');
                 case 'anggota':
                     require_once 'template/anggota.php';
                     break;
+                    
+                case 'tambah_anggota':
+                    require_once 'template/tambah_anggota.php';
+                    break;    
+
+                case 'edit_anggota':
+                    require_once 'template/edit_anggota.php';
+                    break;
 
                 case 'pinjam':
                     require_once 'template/pinjam.php';
