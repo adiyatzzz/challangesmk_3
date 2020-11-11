@@ -71,6 +71,14 @@ include('function/function.php');
                 case 'denda':
                     require_once 'template/denda.php';
                     break;
+                    
+                case 'edit_buku':
+                    require_once 'template/edit_buku.php';
+                    break;
+                    
+                case 'tambah_buku':
+                    require_once 'template/tambah_buku.php';
+                    break;
 
                 default:
                     require_once 'template/notfound.php';
@@ -82,9 +90,71 @@ include('function/function.php');
                 <div class="row mt-3">
                     <h3>Buku</h3>
                 </div>
-
                 <div class="row">
+                    <div class="col-md-6">
+                        <a href="?page=tambah_buku" class="btn btn-primary">Tambah Buku</a>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="" method="post">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search..." name="keyword">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="submit" name="search">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                    
+                        <?php
 
+                        if (isset($_POST['search'])) 
+                        {
+                            $cari = $_POST['keyword'];
+                            echo "Hasil Pencarian : $cari";
+                            $data = mysqli_query($conn, "SELECT * FROM buku WHERE CONCAT(no_buku,judul,pengarang,thn_terbit,penerbit,jns_buku) like '%$cari%' ");
+                        }
+
+                        else
+                        {
+                            $data = mysqli_query($conn, "SELECT * FROM buku");
+                        }
+
+                        ?>
+                    <div class="row mt-3">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Pengarang</th>
+                                        <th scope="col">Tahun Terbit</th>
+                                        <th scope="col">Penerbit</th>
+                                        <th scope="col">Jenis Buku</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                <tbody>
+                                    <?php $no=1;?>
+                                    <?php while ($row = mysqli_fetch_assoc($data)) { ?>
+                                        <tr>
+                                            <th scope="row"><?= $no++; ?></th>
+                                            <td><?php echo $row['judul']; ?></td>
+                                            <td><?php echo $row['pengarang']; ?></td>
+                                            <td><?php echo $row['thn_terbit']; ?></td>
+                                            <td><?php echo $row['penerbit']; ?></td>
+                                            <td><?php echo $row['jns_buku']; ?></td>
+                                            <td>
+                                                <a href="?page=edit_buku&no_buku=<?= $row['no_buku'] ?>" class="btn btn-success">Edit</a>
+                                                <a href="?act=hapus_buku&id=<?= $row['no_buku'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    <?php 
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php } ?>
