@@ -18,19 +18,19 @@ include('function/function.php');
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Perpustakaan</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item <?= (!isset($_GET["page"])) ? 'active' : ''; ?>">
                         <a class="nav-link" href="index.php">Buku <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?= ($_GET["page"] == 'anggota') ? 'active' : ''; ?>">
                         <a class="nav-link" href="?page=anggota">Anggota</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?= ($_GET["page"] == 'pinjam') ? 'active' : ''; ?>">
                         <a class="nav-link" href="?page=pinjam">Pinjam</a>
                     </li>
                 </ul>
@@ -50,7 +50,7 @@ include('function/function.php');
                 case 'pinjam':
                     require_once 'template/pinjam.php';
                     break;
-                /*
+                    /*
                 sebelum menambah halaman harap tambahkan case baru
                 case dan file haru memiliki nama yang sama
                 contoh : 
@@ -62,6 +62,14 @@ include('function/function.php');
 
                 case 'tambah_pinjam':
                     require_once 'template/tambah_pinjam.php';
+                    break;
+
+                case 'edit_pinjam':
+                    require_once 'template/edit_pinjam.php';
+                    break;
+
+                case 'denda':
+                    require_once 'template/denda.php';
                     break;
 
                 default:
