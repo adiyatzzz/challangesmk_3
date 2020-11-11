@@ -81,3 +81,10 @@ function hapus_buku($id)
     mysqli_query($conn, "DELETE FROM buku WHERE no_buku = $id");
     return mysqli_affected_rows($conn);
 }
+
+function hapus_anggota($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM anggota WHERE no_anggota = $id");
+    return mysqli_affected_rows($conn);
+}

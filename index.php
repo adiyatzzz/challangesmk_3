@@ -46,10 +46,10 @@ include('function/function.php');
                 case 'anggota':
                     require_once 'template/anggota.php';
                     break;
-                    
+
                 case 'tambah_anggota':
                     require_once 'template/tambah_anggota.php';
-                    break;    
+                    break;
 
                 case 'edit_anggota':
                     require_once 'template/edit_anggota.php';
@@ -79,11 +79,11 @@ include('function/function.php');
                 case 'denda':
                     require_once 'template/denda.php';
                     break;
-                    
+
                 case 'edit_buku':
                     require_once 'template/edit_buku.php';
                     break;
-                    
+
                 case 'tambah_buku':
                     require_once 'template/tambah_buku.php';
                     break;
@@ -113,63 +113,78 @@ include('function/function.php');
                         </form>
                     </div>
                 </div>
-                    
-                        <?php
 
-                        if (isset($_POST['search'])) 
-                        {
-                            $cari = $_POST['keyword'];
-                            echo "Hasil Pencarian : $cari";
-                            $data = mysqli_query($conn, "SELECT * FROM buku WHERE CONCAT(no_buku,judul,pengarang,thn_terbit,penerbit,jns_buku) like '%$cari%' ");
-                        }
+                <?php
 
-                        else
-                        {
-                            $data = mysqli_query($conn, "SELECT * FROM buku");
-                        }
+                if (isset($_POST['search'])) {
+                    $cari = $_POST['keyword'];
+                    echo "Hasil Pencarian : $cari";
+                    $data = mysqli_query($conn, "SELECT * FROM buku WHERE CONCAT(no_buku,judul,pengarang,thn_terbit,penerbit,jns_buku) like '%$cari%' ");
+                } else {
+                    $data = mysqli_query($conn, "SELECT * FROM buku");
+                }
 
-                        ?>
-                    <div class="row mt-3">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Judul</th>
-                                        <th scope="col">Pengarang</th>
-                                        <th scope="col">Tahun Terbit</th>
-                                        <th scope="col">Penerbit</th>
-                                        <th scope="col">Jenis Buku</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                <tbody>
-                                    <?php $no=1;?>
-                                    <?php while ($row = mysqli_fetch_assoc($data)) { ?>
-                                        <tr>
-                                            <th scope="row"><?= $no++; ?></th>
-                                            <td><?php echo $row['judul']; ?></td>
-                                            <td><?php echo $row['pengarang']; ?></td>
-                                            <td><?php echo $row['thn_terbit']; ?></td>
-                                            <td><?php echo $row['penerbit']; ?></td>
-                                            <td><?php echo $row['jns_buku']; ?></td>
-                                            <td>
-                                                <a href="?page=edit_buku&no_buku=<?= $row['no_buku'] ?>" class="btn btn-success">Edit</a>
-                                                <a href="?act=hapus_buku&id=<?= $row['no_buku'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    <?php 
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                if (isset($_GET["act"]) == 'hapus_buku') {
+                    $id = $_GET["id"];
+                    if (hapus_buku($id) > 0) {
+                        echo "
+                        <script>
+                        alert('Data berhasil di hapus')
+                        window.location.href = 'index.php';
+                        </script>
+                        ";
+                    } else {
+                        echo "
+                        <script>
+                        alert('Data gagal di hapus')
+                        window.location.href = 'index.php';
+                        </script>
+                        ";
+                    }
+                }
+
+                ?>
+                <div class="row mt-3">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Judul</th>
+                                <th scope="col">Pengarang</th>
+                                <th scope="col">Tahun Terbit</th>
+                                <th scope="col">Penerbit</th>
+                                <th scope="col">Jenis Buku</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        <tbody>
+                            <?php $no = 1; ?>
+                            <?php while ($row = mysqli_fetch_assoc($data)) { ?>
+                                <tr>
+                                    <th scope="row"><?= $no++; ?></th>
+                                    <td><?php echo $row['judul']; ?></td>
+                                    <td><?php echo $row['pengarang']; ?></td>
+                                    <td><?php echo $row['thn_terbit']; ?></td>
+                                    <td><?php echo $row['penerbit']; ?></td>
+                                    <td><?php echo $row['jns_buku']; ?></td>
+                                    <td>
+                                        <a href="?page=edit_buku&no_buku=<?= $row['no_buku'] ?>" class="btn btn-success">Edit</a>
+                                        <a href="?act=hapus_buku&id=<?= $row['no_buku'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        <?php } ?>
     </div>
+    </div>
+<?php } ?>
+</div>
 
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>
