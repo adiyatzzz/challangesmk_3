@@ -25,11 +25,11 @@ if (isset($_GET['act']) == 'hapus_anggota') {
   <div class="row mt-3">
     <h3>Anggota</h3>
   </div>
-  <div class="row">
-    <div class="col-md-6">
+  <div class="row mt-3">
+    <div class="col-md-6 p-0">
       <a href="?page=tambah_anggota" class="btn btn-primary">Tambah Anggota</a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 p-0">
       <form action="" method="post">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search..." name="keyword">
@@ -43,16 +43,21 @@ if (isset($_GET['act']) == 'hapus_anggota') {
 
   <?php
 
+  $jml_denda = query("SELECT no_anggota, COUNT(no_anggota) AS jml_denda 
+                      FROM denda
+                      WHERE tarif_denda != '-' AND jns_denda != '-'
+                      GROUP BY no_anggota");
+
   if (isset($_POST['search'])) {
     $cari = $_POST['keyword'];
     echo "Hasil Pencarian : $cari";
     $data = query("SELECT * FROM anggota WHERE 
-                                                            nama LIKE '%$cari%' OR
-                                                            jurusan LIKE '%$cari%' OR
-                                                            alamat LIKE '%$cari%' OR
-                                                            tgl_lahir LIKE '%$cari%' OR
-                                                            jml_denda LIKE '%$cari%' 
-                                                                  ");
+                                      nama LIKE '%$cari%' OR
+                                      jurusan LIKE '%$cari%' OR
+                                      alamat LIKE '%$cari%' OR
+                                      tgl_lahir LIKE '%$cari%' OR
+                                      jml_denda LIKE '%$cari%' 
+                                            ");
   } else {
     $data = query("SELECT * FROM anggota");
   }
@@ -86,7 +91,15 @@ if (isset($_GET['act']) == 'hapus_anggota') {
             <td><?= $d["jurusan"] ?></td>
             <td><?= $d["alamat"] ?></td>
             <td><?= $d["tgl_lahir"] ?></td>
-            <td><?= $d["jml_denda"] ?></td>
+            <td class="denda">
+              <?php
+              foreach ($jml_denda as $denda) {
+                if ($d["no_anggota"] == $denda["no_anggota"]) {
+                  echo $denda["jml_denda"];
+                }
+              }
+              ?>
+            </td>
             <td>
               <a href="?page=edit_anggota&id=<?= $d['no_anggota'] ?>" class="btn btn-success">Edit</a>
               <a href="?page=anggota&act=hapus_anggota&id=<?= $d['no_anggota'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>

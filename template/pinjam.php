@@ -25,11 +25,11 @@ if (isset($_GET['act']) == 'hapus_pinjam') {
         <h3>Pinjam Buku</h3>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row mt-3">
+        <div class="col-md-6 p-0">
             <a href="?page=tambah_pinjam" class="btn btn-primary">Tambah Pinjam</a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 p-0">
             <form action="" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search..." name="keyword">
@@ -41,12 +41,12 @@ if (isset($_GET['act']) == 'hapus_pinjam') {
         </div>
     </div>
     <div class="row mt-3">
-        <table class="table table-hover">
+        <table class="table table-hover table-responsive">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Anggota</th>
-                    <th scope="col">Buku</th>
+                    <th scope="col" width="20%">Buku</th>
                     <th scope="col">Tanggal Pinjam</th>
                     <th scope="col">Tanggal Kembali</th>
                     <th scope="col">Tarif</th>
@@ -92,9 +92,9 @@ if (isset($_GET['act']) == 'hapus_pinjam') {
                         <td><?= $d['tarif_denda'] ?></td>
                         <td><?= $d['jns_denda'] ?></td>
                         <td>
-                            <a href="?page=denda&id=<?= $d['kode_pinjam'] ?>" class=" btn btn-warning">Denda</a>
-                            <a href="?page=edit_pinjam&id=<?= $d['kode_pinjam'] ?>" class="btn btn-success">Edit</a>
-                            <a href="?page=pinjam&act=hapus_pinjam&id=<?= $d['kode_pinjam'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
+                            <a href="?page=denda&id=<?= $d['kode_pinjam'] ?>" class=" btn btn-sm btn-warning">Denda</a>
+                            <a href="?page=edit_pinjam&id=<?= $d['kode_pinjam'] ?>" class="btn btn-sm   btn-success">Edit</a>
+                            <a href="?page=pinjam&act=hapus_pinjam&id=<?= $d['kode_pinjam'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

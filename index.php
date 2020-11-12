@@ -98,11 +98,12 @@ include('function/function.php');
                 <div class="row mt-3">
                     <h3>Buku</h3>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
+
+                <div class="row mt-3">
+                    <div class="col-md-6 p-0">
                         <a href="?page=tambah_buku" class="btn btn-primary">Tambah Buku</a>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 p-0">
                         <form action="" method="post">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search..." name="keyword">
@@ -185,6 +186,7 @@ include('function/function.php');
 
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/myscript.js"></script>
 </body>
 
 </html>
