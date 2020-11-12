@@ -7,7 +7,7 @@ if (isset($_POST['tambah'])) {
     $alamat     = $_POST['alamat'];
     $tgl_lahir     = $_POST['tgl_lahir'];
 
-    mysqli_query($conn, "INSERT INTO anggota VALUES('','$nama','$jurusan','$alamat','$tgl_lahir','0')");
+    mysqli_query($conn, "INSERT INTO anggota VALUES('','$nama','$jurusan','$alamat','$tgl_lahir')");
 
     if (mysqli_affected_rows($conn) > 0) {
         echo "

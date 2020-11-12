@@ -55,8 +55,7 @@ if (isset($_GET['act']) == 'hapus_anggota') {
                                       nama LIKE '%$cari%' OR
                                       jurusan LIKE '%$cari%' OR
                                       alamat LIKE '%$cari%' OR
-                                      tgl_lahir LIKE '%$cari%' OR
-                                      jml_denda LIKE '%$cari%' 
+                                      tgl_lahir LIKE '%$cari%'
                                             ");
   } else {
     $data = query("SELECT * FROM anggota");
