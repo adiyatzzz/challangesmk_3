@@ -22,6 +22,7 @@ if (isset($_POST["edit"])) {
     $tgl_kembali = $_POST["tgl_kembali"];
 
     if (edit_pinjam($id, $nama, $buku, $tgl_pinjam, $tgl_kembali) > 0) {
+        edit_denda($id, $nama, $tgl_pinjam);
         echo "
             <script>
             alert('Data peminjaman telah di edit')
@@ -71,6 +72,7 @@ if (isset($_POST["edit"])) {
                     <div class="form-group">
                         <label for="tgl_kembali">Tanggal Kembali</label>
                         <input class="form-control" type="date" name="tgl_kembali" id="tgl_kembali" value="<?= $tgl_kembali ?>">
+                        <input type="hidden" name="old_tgl_kembali" value="<?= $tgl_kembali ?>">
                     </div>
                     <button type="submit" class="btn btn-primary" name="edit">Edit</button>
                 </form>

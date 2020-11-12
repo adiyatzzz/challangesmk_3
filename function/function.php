@@ -51,9 +51,14 @@ function edit_pinjam($kode_pinjam, $nama, $buku, $tgl_pinjam, $tgl_kembali)
     // edit tabel pinjam_buku
     mysqli_query($conn, "UPDATE pinjam_buku SET no_anggota = '$nama', no_buku = '$buku', tgl_pinjam = '$tgl_pinjam', tgl_kembali = '$tgl_kembali' WHERE kode_pinjam = $kode_pinjam");
 
+    return mysqli_affected_rows($conn);
+}
+
+function edit_denda($kode_pinjam, $nama, $tgl_pinjam)
+{
+    global $conn;
     // edit tabel denda
     mysqli_query($conn, "UPDATE denda SET no_anggota = '$nama', tgl_pinjam = '$tgl_pinjam' WHERE kode_pinjam = '$kode_pinjam'");
-    return mysqli_affected_rows($conn);
 }
 
 function denda($kode_pinjam, $tarif, $jns_denda)
