@@ -93,3 +93,11 @@ function hapus_anggota($id)
     mysqli_query($conn, "DELETE FROM anggota WHERE no_anggota = $id");
     return mysqli_affected_rows($conn);
 }
+
+function hapus_data_anggota($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM denda WHERE no_anggota = $id");
+    mysqli_query($conn, "DELETE FROM pinjam_buku WHERE no_anggota = $id");
+    mysqli_query($conn, "DELETE FROM anggota WHERE no_anggota = $id");
+}

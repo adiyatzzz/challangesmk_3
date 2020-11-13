@@ -10,9 +10,10 @@ if (isset($_GET['act']) == 'hapus_anggota') {
             </script>
         ";
   } else {
+    hapus_data_anggota($id);
     echo  "
             <script>
-            alert ('Data gagal di hapus')
+            alert ('Data berhasil di hapus')
             window.location.href ='?page=anggota';
             </script>
         ";
@@ -101,7 +102,7 @@ if (isset($_GET['act']) == 'hapus_anggota') {
             </td>
             <td>
               <a href="?page=edit_anggota&id=<?= $d['no_anggota'] ?>" class="btn btn-success">Edit</a>
-              <a href="?page=anggota&act=hapus_anggota&id=<?= $d['no_anggota'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?')">Hapus</a>
+              <a href="?page=anggota&act=hapus_anggota&id=<?= $d['no_anggota'] ?>" class="btn btn-danger" onclick="return confirm('Yakin?, Seluruh data peminjaman buku dan denda akan terhapus.')">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>

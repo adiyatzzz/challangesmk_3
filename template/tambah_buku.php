@@ -1,6 +1,6 @@
 <?php
 
-    if(isset($_POST['tambah'])){
+if (isset($_POST['tambah'])) {
 
     $judul = $_POST['judul'];
     $pengarang = $_POST['pengarang'];
@@ -10,7 +10,7 @@
 
     mysqli_query($conn, "INSERT INTO buku VALUES('','$judul','$pengarang','$thn_terbit','$penerbit','$jns_buku')");
 
-    if (mysqli_affected_rows($conn) > 0){
+    if (mysqli_affected_rows($conn) > 0) {
         echo "
             <script>
             alert('Data Buku telah di input')
@@ -33,29 +33,29 @@
     <div class="row mt-5">
         <div class="card col-md-6">
             <div class="card-body">
-                <h5 class="card-title">Tambah Pinjam</h5>
+                <h5 class="card-title">Tambah Buku</h5>
                 <form action="" method="POST">
-                <div class="form-group">
-                    <label for="">Judul</label>
-                    <input type="text" class="form-control" id="" name="judul">
-                </div>
-                <div class="form-group">
-                    <label for="">Pengarang</label>
-                    <input type="text" class="form-control" id="" name="pengarang">
-                </div>
-                <div class="form-group">
-                    <label for="">Tahun Terbit</label>
-                    <input type="text" class="form-control" id="" name="thn_terbit">
-                </div>
-                <div class="form-group">
-                    <label for="">Penerbit</label>
-                    <input type="text" class="form-control" id="" name="penerbit">
-                </div>
-                <div class="form-group">
-                    <label for="">Jenis Buku</label>
-                    <input type="text" class="form-control" id="" name="jns_buku">
-                </div>
-                <button type="submit"  class="btn btn-primary" name="tambah">Tambah</button>
+                    <div class="form-group">
+                        <label for="">Judul</label>
+                        <input type="text" class="form-control" id="" name="judul">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pengarang</label>
+                        <input type="text" class="form-control" id="" name="pengarang">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tahun Terbit</label>
+                        <input type="text" class="form-control" id="" name="thn_terbit">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Penerbit</label>
+                        <input type="text" class="form-control" id="" name="penerbit">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Jenis Buku</label>
+                        <input type="text" class="form-control" id="" name="jns_buku">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="tambah">Tambah</button>
                 </form>
             </div>
         </div>
